@@ -5,7 +5,14 @@
 #include<string.h>
 
 void * thread_handle(void * arg){
-    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL);
+    int oldstate;
+    int result;
+    result = pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,&oldstate);
+    if(result!=0){
+        printf("设置线程取消状态失败");
+        pthread_exit(NULL);
+    }
+    printf("设置线程取消状态成功，之前状态为：%d\n",oldstate);
     while(true){
         sleep(1);
         printf("线程执行中\n");
