@@ -1,0 +1,2 @@
+gcc demo2.cpp -o demo2.out -lpthread
+./demo2.out
